@@ -1,62 +1,288 @@
-<template class="bg-white">
-    <v-row>
-      <v-col cols="12" class="d-flex justify-center align-center pt-7">
-        <div class="d-md-none">
-          <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="ml-n12 text-primaria"></v-app-bar-nav-icon>
-            <v-navigation-drawer v-model="drawer" location="left" temporary>
-              <v-img class="mx-auto my-5" max-width="160" height="auto" cover src=""></v-img>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Início</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Quem somos</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Parceiros</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Segurança</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Soluções</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Módulos</v-btn>
-              <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Ajuda</v-btn>
-              <div>            
-                <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize" density="comfortable"><p class="text-subtitle-1">Entrar</p></v-btn>
-              </div>
-              <div class="d-flex justify-center">               
-                <v-btn class="w-75 bg-primary rounded-xl elevation-0 text-transf ">
-                  Acesse a Plataforma
-                </v-btn>
-              </div>
-            </v-navigation-drawer>
-        </div>
-        <v-col cols="5" class="d-none d-md-block">
-          <v-img width="auto" max-width="100" height="auto" class=" ml-16" cover src="@/assets/X.png" @click="$router.push({ path: '/' })"></v-img>
-        </v-col>     
-        <v-col cols="7" class="d-flex align-center justify-end">
-          <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Início</p></a>
-          <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Sobre</p></a>    
-          <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Habilidades</p></a>  
-          <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Projetos</p></a>
-          <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Contatos</p></a>
-        </v-col>
-      </v-col>
-    </v-row> 
-    <v-row class="bg-gelo py-16">
-      <v-container>     
+<template>
+    <v-main class="overflow-x-hidden overflow-y-hidden">
         <v-row>
-            <v-col cols="12" class="d-flex justify-center align-itens-center text-center">
-              <div>
-                <p class="text-h5 text-md-h4 text-lg-h3 font-weight-bold">Olá, eu sou Alexandre Oliveira</p><br>
-                <p class="text-h6 text-md-h5 text-lg-h4 font-weight-bold mt-n4">Desenvolvedor <span class="text-h6 text-md-h5 text-lg-h4 font-weight-bold text-primaria">Frontend</span></p>
-                <p class="text-subtitle-1 text-md-h6 text-lg-h5 font-weight-bold text-cinza mt-1">crie com propósito</p>
-                <div class=" d-flex justify-center align-center">
-                    <v-col cols="3">
-                        <v-btn block class="bg-primaria rounded">Github</v-btn>
-                    </v-col>
-                    <v-col cols="3">
-                        <v-btn block class="bg-primaria rounded">Linkedin</v-btn>
-                    </v-col>
-                    
-                    
+            <v-col cols="12" class="d-flex justify-center align-center pt-7">
+                <div class="d-md-none">
+                    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="ml-n12 text-primaria"></v-app-bar-nav-icon>
+                    <v-navigation-drawer v-model="drawer" location="left" temporary>
+                        <v-img class="mx-auto my-5" max-width="160" height="auto" cover src=""></v-img>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Início</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Sobre</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Habilidades</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Contato</v-btn>                      
+                    </v-navigation-drawer>
                 </div>
-              </div>          
+                <v-col cols="5" class="d-none d-md-block">
+                    <v-img width="auto" max-width="100" height="auto" class=" ml-16" cover src="@/assets/X.png" @click="$router.push({ path: '/' })"></v-img>
+                </v-col>     
+                <v-col cols="7" class="d-flex align-center justify-end mr-16">
+                    <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Início</p></a>
+                    <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Sobre</p></a>    
+                    <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Habilidades</p></a>  
+                    <a class="cursor-pointer d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Contato</p></a>
+                </v-col>
             </v-col>
-        </v-row>     
-      </v-container>
-    </v-row>
+        </v-row>
+        <v-row class="mb-10">
+            <v-col cols="12">
+                <v-row class="bg-gelo py-16">    
+                    <v-col cols="12" class="d-flex justify-center align-itens-center text-center">
+                        <div>
+                            <p class="text-h5 text-md-h4 text-lg-h3 font-weight-bold">Olá, eu sou Alexandre Oliveira</p><br>
+                            <p class="text-h6 text-md-h5 text-lg-h4 font-weight-bold mt-n4">Desenvolvedor <span class="text-h6 text-md-h5 text-lg-h4 font-weight-bold text-primaria">Frontend</span></p>
+                            <p class="text-subtitle-1 text-md-h6 text-lg-h5 font-weight-bold text-cinza mt-1">crie com propósito</p>
+                            <div class=" d-flex justify-center align-center">
+                                <v-col cols="3">
+                                    <v-btn block class="bg-primaria rounded">Github</v-btn>
+                                </v-col>
+                                <v-col cols="3">
+                                    <v-btn block class="bg-primaria rounded">Linkedin</v-btn>
+                                </v-col>                                      
+                            </div>
+                        </div>          
+                    </v-col> 
+                </v-row>
+                <v-row>
+                    <v-col cols="12" class="d-flex justify-center align-center mt-5">
+                        <p class="text-subtitle1 text-md-h6 text-lg-h5 font-weight-bold" style="border-bottom: 3px solid #00008B;">Projetos</p>
+                    </v-col>
+                </v-row>
+                <v-row class="mt-10 d-flex start">
+                    <v-col cols="12" md="3" class="pl-10 mt-10">
+                        <v-col cols="12 mb-10">
+                            <p class="font-weight-bold">Filtrar por projeto</p>
+                            <v-text-field
+                                v-model="queryAnos"
+                                density="compact"
+                                variant="solo"
+                                label="Pesquisar projeto"
+                                append-inner-icon="mdi-magnify"
+                                single-line
+                                hide-details
+                                class="mt-2"
+                            >
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <h4>Filtro por Anos <v-icon :icon="toggleFiltros.includes('Anos') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Anos') ? popIt(toggleFiltros, 'Anos') : toggleFiltros.push('Anos');"></v-icon></h4>
+                            <v-row v-if="toggleFiltros.includes('Anos')">
+                                <v-col>
+                                    <v-text-field
+                                        v-model="queryAnos"
+                                        density="compact"
+                                        variant="solo"
+                                        label="Pesquisa Ano"
+                                        append-inner-icon="mdi-magnify"
+                                        single-line
+                                        hide-details
+                                        class="mt-2"
+                                    >
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>                      
+                            <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Anos')">
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> 2022
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> 2023
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> 2024
+                                    </label>
+                                </v-col>
+                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
+                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
+                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
+                                    </label>
+                                </v-col> -->
+                            </v-row>
+                            <hr class="mt-2">
+                        </v-col>   
+                        <v-col cols="12 mt-2">
+                            <h4>Filtro por Framework <v-icon :icon="toggleFiltros.includes('Frame') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Frame') ? popIt(toggleFiltros, 'Frame') : toggleFiltros.push('Frame');"></v-icon></h4>
+                            <v-row v-if="toggleFiltros.includes('Frame')">
+                                <v-col>
+                                    <v-text-field
+                                        v-model="queryAnos"
+                                        density="compact"
+                                        variant="solo"
+                                        label="Pesquisa Ano"
+                                        append-inner-icon="mdi-magnify"
+                                        single-line
+                                        hide-details
+                                        class="mt-2"
+                                    >
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>                      
+                            <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Frame')">
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> VueJS
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> RectJS
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> Angular
+                                    </label>
+                                </v-col>
+                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
+                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
+                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
+                                    </label>
+                                </v-col> -->
+                            </v-row>
+                            <hr class="mt-2">
+                        </v-col>
+                        <v-col cols="12 mt-2">
+                            <h4>Filtro por Linguagem <v-icon :icon="toggleFiltros.includes('Linguagem') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Linguagem') ? popIt(toggleFiltros, 'Linguagem') : toggleFiltros.push('Linguagem');"></v-icon></h4>
+                            <v-row v-if="toggleFiltros.includes('Linguagem')">
+                                <v-col>
+                                    <v-text-field
+                                        v-model="queryAnos"
+                                        density="compact"
+                                        variant="solo"
+                                        label="Pesquisa Ano"
+                                        append-inner-icon="mdi-magnify"
+                                        single-line
+                                        hide-details
+                                        class="mt-2"
+                                    >
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>                      
+                            <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Linguagem')">
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> JavaScript
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> TypeScript
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> Python
+                                    </label>
+                                </v-col>
+                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
+                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
+                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
+                                    </label>
+                                </v-col> -->
+                            </v-row>
+                            <hr class="mt-2">
+                        </v-col>                     
+                    </v-col>
+                                    
+                    <v-col cols="12" md="9">
+                        <v-row class="d-flex justify-center mx-5 mx-md-0">
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
+                                    <v-col cols="12" md="4">
+                                        <v-img contain src="@/assets/img-projeto.png"></v-img>
+                                    </v-col>
+                                    <v-col cols="12" md="6" class="pl-md-10">
+                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
+                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
+                                        <v-row class="mt-2">
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
+                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>                                   
+                            </v-col> 
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
+                                    <v-col cols="12" md="4">
+                                        <v-img contain src="@/assets/img-projeto.png"></v-img>
+                                    </v-col>
+                                    <v-col cols="12" md="6" class="pl-md-10">
+                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
+                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
+                                        <v-row class="mt-2">
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
+                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>                                   
+                            </v-col>   
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
+                                    <v-col cols="12" md="4">
+                                        <v-img contain src="@/assets/img-projeto.png"></v-img>
+                                    </v-col>
+                                    <v-col cols="12" md="6" class="pl-md-10">
+                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
+                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
+                                        <v-row class="mt-2">
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
+                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>                                   
+                            </v-col>                      
+                        </v-row>
+                    </v-col>
+                </v-row>          
+            </v-col>
+        </v-row>
+    </v-main>
   </template>
   
   <script>
@@ -66,8 +292,31 @@
     data(){
       return {
         drawer: false,
+        toggleFiltros: [],
       }   
     },
+
+    methods: {
+        popIt(target, element){
+            let index = target.indexOf(element);
+            if(index > -1){
+                target.splice(index, 1);
+            }
+        },
+    }
   })
    
   </script>
+
+  <style scoped>
+    .primary-icon-link {
+        background: #00008B;
+        color: #f6f6f6;
+        border-radius: 10px;
+        margin-bottom: 4px;
+        margin-left: 6px;
+        padding: 12px;
+        border: 1px solid #ededed;
+        cursor: pointer;
+    }
+  </style>
