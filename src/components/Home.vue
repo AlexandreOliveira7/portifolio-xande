@@ -105,7 +105,7 @@
                             <hr class="mt-2">
                         </v-col>   
                         <v-col cols="12 mt-2">
-                            <h4>Filtro por Framework <v-icon :icon="toggleFiltros.includes('Frame') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Frame') ? popIt(toggleFiltros, 'Frame') : toggleFiltros.push('Frame');"></v-icon></h4>
+                            <h4>Filtro por Frameworks <v-icon :icon="toggleFiltros.includes('Frame') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Frame') ? popIt(toggleFiltros, 'Frame') : toggleFiltros.push('Frame');"></v-icon></h4>
                             <v-row v-if="toggleFiltros.includes('Frame')">
                                 <v-col>
                                     <v-text-field
@@ -146,7 +146,7 @@
                             <hr class="mt-2">
                         </v-col>
                         <v-col cols="12 mt-2">
-                            <h4>Filtro por Linguagem <v-icon :icon="toggleFiltros.includes('Linguagem') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Linguagem') ? popIt(toggleFiltros, 'Linguagem') : toggleFiltros.push('Linguagem');"></v-icon></h4>
+                            <h4>Filtro por Linguagens <v-icon :icon="toggleFiltros.includes('Linguagem') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Linguagem') ? popIt(toggleFiltros, 'Linguagem') : toggleFiltros.push('Linguagem');"></v-icon></h4>
                             <v-row v-if="toggleFiltros.includes('Linguagem')">
                                 <v-col>
                                     <v-text-field
@@ -185,7 +185,48 @@
                                 </v-col> -->
                             </v-row>
                             <hr class="mt-2">
-                        </v-col>                     
+                        </v-col>      
+                        <v-col cols="12 mt-2">
+                            <h4>Filtro por Bibliotecas <v-icon :icon="toggleFiltros.includes('Bibliotecas') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Bibliotecas') ? popIt(toggleFiltros, 'Bibliotecas') : toggleFiltros.push('Bibliotecas');"></v-icon></h4>
+                            <v-row v-if="toggleFiltros.includes('Bibliotecas')">
+                                <v-col>
+                                    <v-text-field
+                                        v-model="queryAnos"
+                                        density="compact"
+                                        variant="solo"
+                                        label="Pesquisa Ano"
+                                        append-inner-icon="mdi-magnify"
+                                        single-line
+                                        hide-details
+                                        class="mt-2"
+                                    >
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>                      
+                            <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Bibliotecas')">
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> JavaScript
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> TypeScript
+                                    </label>
+                                </v-col>
+                                <v-col cols="12" class="ma-0 mt-0 mb-0">
+                                    <label>
+                                        <input class="mt-1" type="checkbox"> Python
+                                    </label>
+                                </v-col>
+                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
+                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
+                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
+                                    </label>
+                                </v-col> -->
+                            </v-row>
+                            <hr class="mt-2">
+                        </v-col>          
                     </v-col>
                                     
                     <v-col cols="12" md="9">
@@ -287,13 +328,43 @@
   
   <script>
   import { defineComponent } from 'vue';
+  import  axios  from 'axios';
+  import get_user from '@/files/get-user.json'
   
   export default defineComponent({
     data(){
       return {
         drawer: false,
         toggleFiltros: [],
+        dataResult: get_user,
+        filtroTernario: {
+            anos: {               
+                "2022": null,
+                "2023": null,
+                "2024": null
+            },
+            frameworks: {               
+                "ReactJS": null,
+                "VueJS": null,
+                "Angular": null
+            },
+            linguagens: {               
+                "JavaScript": null,
+                "TypeScript": null
+            },
+            bibliotecas: {               
+                "Vuetify": null,
+                "Bootstrap": null,
+                "TailwindCSS": null,
+                "Styled-Componets": null
+            }
+
+        },
       }   
+    },
+
+    computed: {
+        
     },
 
     methods: {
@@ -303,6 +374,21 @@
                 target.splice(index, 1);
             }
         },
+
+        // async getUser() {
+        //     await axios('https://api.github.com/users/AlexandreOliveira7/repos').then(response => {
+        //         console.log(response)
+        //     })
+        // }, 
+        
+        geradorProjetos(){
+           let arr_keys = Object.keys(this.dataResult);
+            console.log(arr_keys)
+        }
+    },
+    mounted() {
+        // this.getUser()
+        this.geradorProjetos();
     }
   })
    
