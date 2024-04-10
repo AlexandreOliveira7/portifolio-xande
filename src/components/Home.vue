@@ -52,7 +52,7 @@
                         <v-col cols="12 mb-10">
                             <p class="font-weight-bold">Filtrar por projeto</p>
                             <v-text-field
-                                v-model="queryAnos"
+                                v-model="queryProjeto"
                                 density="compact"
                                 variant="solo"
                                 label="Pesquisar projeto"
@@ -81,26 +81,11 @@
                                 </v-col>
                             </v-row>                      
                             <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Anos')">
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> 2022
+                                <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in AmostraAnos" :key="'anos__' + valor">
+                                    <label :class="matchedQueryAnos.includes(valor) ? 'font-weight-bold' : ''">
+                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
                                     </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> 2023
-                                    </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> 2024
-                                    </label>
-                                </v-col>
-                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
-                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
-                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
-                                    </label>
-                                </v-col> -->
+                                </v-col>                              
                             </v-row>
                             <hr class="mt-2">
                         </v-col>   
@@ -109,7 +94,7 @@
                             <v-row v-if="toggleFiltros.includes('Frame')">
                                 <v-col>
                                     <v-text-field
-                                        v-model="queryAnos"
+                                        v-model="queryFrame"
                                         density="compact"
                                         variant="solo"
                                         label="Pesquisa Ano"
@@ -122,26 +107,11 @@
                                 </v-col>
                             </v-row>                      
                             <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Frame')">
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> VueJS
+                                <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in AmostraFrameWorks" :key="'frame__' + valor">
+                                    <label :class="matchedQueryFrame.includes(valor) ? 'font-weight-bold' : ''">
+                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['frameworks'][valor] ? 'chk-red' : (true === filtroTernario['frameworks'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['frameworks'][valor]" v-model="filtroTernario['frameworks'][valor]"> {{ valor }}
                                     </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> RectJS
-                                    </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> Angular
-                                    </label>
-                                </v-col>
-                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
-                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
-                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
-                                    </label>
-                                </v-col> -->
+                                </v-col>                              
                             </v-row>
                             <hr class="mt-2">
                         </v-col>
@@ -150,7 +120,7 @@
                             <v-row v-if="toggleFiltros.includes('Linguagem')">
                                 <v-col>
                                     <v-text-field
-                                        v-model="queryAnos"
+                                        v-model="queryLinguagem"
                                         density="compact"
                                         variant="solo"
                                         label="Pesquisa Ano"
@@ -163,35 +133,20 @@
                                 </v-col>
                             </v-row>                      
                             <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Linguagem')">
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> JavaScript
+                                <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in AmostraLinguagem" :key="'linguagem__' + valor">
+                                    <label :class="matchedQueryLinguagem.includes(valor) ? 'font-weight-bold' : ''">
+                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['linguagens'][valor] ? 'chk-red' : (true === filtroTernario['linguagens'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['linguagens'][valor]" v-model="filtroTernario['linguagens'][valor]"> {{ valor }}
                                     </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> TypeScript
-                                    </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> Python
-                                    </label>
-                                </v-col>
-                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
-                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
-                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
-                                    </label>
-                                </v-col> -->
+                                </v-col>                              
                             </v-row>
                             <hr class="mt-2">
                         </v-col>      
                         <v-col cols="12 mt-2">
-                            <h4>Filtro por Bibliotecas <v-icon :icon="toggleFiltros.includes('Bibliotecas') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Bibliotecas') ? popIt(toggleFiltros, 'Bibliotecas') : toggleFiltros.push('Bibliotecas');"></v-icon></h4>
+                            <h4>Filtro por Estilo <v-icon :icon="toggleFiltros.includes('Bibliotecas') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Bibliotecas') ? popIt(toggleFiltros, 'Bibliotecas') : toggleFiltros.push('Bibliotecas');"></v-icon></h4>
                             <v-row v-if="toggleFiltros.includes('Bibliotecas')">
                                 <v-col>
                                     <v-text-field
-                                        v-model="queryAnos"
+                                        v-model="queryEstilo"
                                         density="compact"
                                         variant="solo"
                                         label="Pesquisa Ano"
@@ -335,6 +290,15 @@
     data(){
       return {
         drawer: false,
+        queryProjeto: '',
+        queryAnos: '',
+        queryFrame: '',
+        queryLinguagem: '',
+        queryEstilo: '',
+        matchedQueryAnos: [],
+        matchedQueryFrame: [],
+        matchedQueryLinguagem: [],
+        matchedQueryEstilo: [],
         toggleFiltros: [],
         dataResult: get_user,
         filtroTernario: {
@@ -346,13 +310,20 @@
             frameworks: {               
                 "ReactJS": null,
                 "VueJS": null,
-                "Angular": null
+                "Angular": null,
+                "Django": null,
+                "Laravel": null
             },
             linguagens: {               
                 "JavaScript": null,
-                "TypeScript": null
+                "TypeScript": null,
+                "Python": null,
+                "C": null,
+                "C#": null,
+                "PHP": null,
+                "Java": null
             },
-            bibliotecas: {               
+            estilo: {               
                 "Vuetify": null,
                 "Bootstrap": null,
                 "TailwindCSS": null,
@@ -364,6 +335,136 @@
     },
 
     computed: {
+        AmostraAnos(){
+            let chaves = Object.keys(this.filtroTernario['anos']);
+            let chaves_len = chaves.length;
+            var query = this.queryAnos.toLowerCase();
+            this.matchedQueryAnos = [];
+            chaves.sort(function(a, b){
+                return (a.toLowerCase() < b.toLowerCase()) ? 1 : -1
+            });
+            if(query.length > 0){
+                for(var x = 0; x < chaves_len; x++){
+                    var subject = chaves[x].toLowerCase();
+                    var result = subject.match(query);
+                    if((result) && result.length > 0){
+                        this.matchedQueryAnos.push(chaves[x])
+                    }
+                }
+            }
+
+            chaves.sort(function(a, b){
+                if(this.matchedQueryAnos.includes(a)){
+                return -1
+                }
+                return 1
+            }.bind(this));
+
+            return chaves
+        },
+        AmostraFrameWorks(){
+            let chaves = Object.keys(this.filtroTernario['frameworks']);
+            let chaves_length = chaves.length;
+            var query = this.queryFrame.toLowerCase();
+            this.matchedQueryFrame = [];
+            chaves.sort(function(a, b){
+                return (a.toLowerCase() < b.toLowerCase()) ? 1 : -1
+            });
+
+            if(query.length > 0){
+                for(let x = 0; x < chaves_length; x++){
+                    let chave_atual = chaves[x].toLowerCase();
+                    var result = chave_atual.match(query);
+                    if((result) && result.length > 0){
+                        this.matchedQueryFrame.push(chaves[x]);
+                    }
+                }
+            }
+
+            chaves.sort(function(a,b){
+                if(this.matchedQueryFrame.includes(a)){
+                    return -1
+                }
+                    return 1
+            }.bind(this));
+
+            return chaves;
+        },
+
+        AmostraLinguagem(){
+            let chaves = Object.keys(this.filtroTernario['linguagens']);
+            let chaves_length = chaves.length;
+            var query = this.queryLinguagem.toLowerCase();
+            this.matchedQueryLinguagem = [];
+
+            chaves.sort(function(a, b){
+                return (a.toLowerCase() < b.toLowerCase() ? 1 : -1)
+            })
+
+            if(query.length > 0){
+                for(let x = 0; x < chaves.length; x++){
+                    let chave_atual = chaves[x].toLowerCase();
+                    var result = chave_atual.match(query);
+                    if((result) && result.length > 0){
+                        this.matchedQueryLinguagem.push(chaves[x]);
+                    }
+                }
+            }
+
+            chaves.sort(function(a, b){
+                if(this.matchedQueryLinguagem.includes(a)){
+                    return -1
+                }   
+                    return 1
+            }.bind(this));
+
+            return chaves
+        }
+    },
+
+    watch: {
+
+        'filtroTernario.anos.2022'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['anos']['2022'] = null;
+            }
+        },
+        'filtroTernario.anos.2023'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['anos']['2023'] = null;
+            }
+        },
+        'filtroTernario.anos.2024'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['anos']['2024'] = null;
+            }
+        },
+        'filtroTernario.frameworks.ReactJS'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['frameworks']['ReactJS'] = null;
+            }
+        },
+        'filtroTernario.frameworks.VueJS'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['frameworks']['VueJS'] = null;
+            }
+        },
+        'filtroTernario.frameworks.Angular'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['frameworks']['Angular'] = null;
+            }
+        },
+        'filtroTernario.frameworks.Django'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['frameworks']['Django'] = null;
+            }
+        },
+        'filtroTernario.frameworks.Laravel'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['frameworks']['Laravel'] = null;
+            }
+        },
+
         
     },
 
@@ -382,8 +483,7 @@
         // }, 
         
         geradorProjetos(){
-           let arr_keys = Object.keys(this.dataResult);
-            console.log(arr_keys)
+
         }
     },
     mounted() {
