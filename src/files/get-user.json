@@ -7,24 +7,7 @@
         "bibliotecas": ["Styled-Components"],
         "anos": ["2023"]
 
-    },
-    "662611810": {
-        "nome": "Comunity Feed",
-        "url": "https://api.github.com/repos/AlexandreOliveira7/Comunity-Feed",
-        "linguagens": ["JavaScript"],
-        "frameworks":["ReactJS"],
-        "bibliotecas": [""],
-        "anos": ["2023"]
-
-    },
-    "628769976": {
-        "nome": "Nlw Games",
-        "url": "https://api.github.com/repos/AlexandreOliveira7/Nlw-Games",
-        "linguagens": [""],
-        "frameworks":[""],
-        "bibliotecas": [""],
-        "anos": ["2022"]
-
     }
+    
     
 }
