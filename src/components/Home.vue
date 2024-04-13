@@ -567,7 +567,6 @@
                 }
 
                 if(!ignored_id_projeto.includes(arr_keys)){
-                    console.log('entou')
                     this.filtroProjetos.push(projeto_objeto)
                 }
             }
