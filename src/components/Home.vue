@@ -568,6 +568,7 @@
 
                 if(!ignored_id_projeto.includes(arr_keys)){
                     this.filtroProjetos.push(projeto_objeto)
+                    console.log('opa')
                 }
             }
             
