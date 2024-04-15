@@ -159,34 +159,29 @@
                                 </v-col>
                             </v-row>                      
                             <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Bibliotecas')">
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> JavaScript
+                                <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in AmostraEstilo" :key="'estilo__' + valor">
+                                    <label :class="matchedQueryEstilo.includes(valor) ? 'font-weight-bold' : ''" >
+                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['estilo'][valor] ? 'chk-red' : (true === filtroTernario['estilo'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['estilo'][valor]" v-model="filtroTernario['estilo'][valor]"> {{valor}}
                                     </label>
                                 </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> TypeScript
-                                    </label>
-                                </v-col>
-                                <v-col cols="12" class="ma-0 mt-0 mb-0">
-                                    <label>
-                                        <input class="mt-1" type="checkbox"> Python
-                                    </label>
-                                </v-col>
+                                
                                 <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
-                                    <label :class="matchedQueryAnos.includes(valor) ? 'text-bold' : ''">
-                                        <input type="checkbox" :class="false === filtroTernario['anos'][valor] ? 'chk-red' : (true === filtroTernario['anos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['anos'][valor]" v-model="filtroTernario['anos'][valor]"> {{ valor }}
+                                    <label >
+                                        <input type="checkbox" > {{ valor }}
                                     </label>
                                 </v-col> -->
                             </v-row>
                             <hr class="mt-2">
-                        </v-col>          
+                        </v-col>      
+                        <v-col cols="12">
+                            <v-btn @click="geradorProjetos()">Aplicar Filtros</v-btn>
+                        </v-col>    
+                        {{ filtroProjetos }}
                     </v-col>
                                     
                     <v-col cols="12" md="9">
                         <v-row class="d-flex justify-center mx-5 mx-md-0">
-                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" v-for="projeto in AmostraProjeto">
                                     <v-col cols="12" md="4">
                                         <v-img contain src="@/assets/img-projeto.png"></v-img>
                                     </v-col>
@@ -214,65 +209,7 @@
                                             </v-col>
                                         </v-row>
                                     </v-col>                                   
-                            </v-col> 
-                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
-                                    <v-col cols="12" md="4">
-                                        <v-img contain src="@/assets/img-projeto.png"></v-img>
-                                    </v-col>
-                                    <v-col cols="12" md="6" class="pl-md-10">
-                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
-                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
-                                        <v-row class="mt-2">
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                        </v-row>
-                                        <v-row>
-                                            <v-col cols="12">
-                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
-                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
-                                            </v-col>
-                                        </v-row>
-                                    </v-col>                                   
-                            </v-col>   
-                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2">
-                                    <v-col cols="12" md="4">
-                                        <v-img contain src="@/assets/img-projeto.png"></v-img>
-                                    </v-col>
-                                    <v-col cols="12" md="6" class="pl-md-10">
-                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
-                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
-                                        <v-row class="mt-2">
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                            <v-col cols="2">
-                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                            </v-col>
-                                        </v-row>
-                                        <v-row>
-                                            <v-col cols="12">
-                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
-                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
-                                            </v-col>
-                                        </v-row>
-                                    </v-col>                                   
-                            </v-col>                      
+                            </v-col>                                                                         
                         </v-row>
                     </v-col>
                 </v-row>          
@@ -299,6 +236,7 @@
         matchedQueryFrame: [],
         matchedQueryLinguagem: [],
         matchedQueryEstilo: [],
+        filtroProjetos: [],
         toggleFiltros: [],
         dataResult: get_user,
         filtroTernario: {
@@ -335,6 +273,10 @@
     },
 
     computed: {
+        AmostraProjeto(){
+            let Projeto_amostra = this.filtroProjetos;
+            return Projeto_amostra;
+        },
         AmostraAnos(){
             let chaves = Object.keys(this.filtroTernario['anos']);
             let chaves_len = chaves.length;
@@ -419,11 +361,40 @@
             }.bind(this));
 
             return chaves
+        },
+
+        AmostraEstilo(){
+            let chaves = Object.keys(this.filtroTernario['estilo']);
+            let chaves_length = chaves.length;
+            var query = this.queryEstilo.toLowerCase();
+            this.matchedQueryEstilo = [];
+            chaves.sort(function(a, b){
+                return (a.toLowerCase() < b.toLowerCase() ? 1 : -1)
+            });
+
+            if(query.length > 0){
+                for(let x = 0; x < chaves_length; x++){
+                    var chave_atual = chaves[x].toLowerCase();
+                    var result = chave_atual.match(query);
+                    if((result) && result.length > 0){
+                        this.matchedQueryEstilo.push(chaves[x]);
+                    }
+                }
+            }
+
+            chaves.sort(function(a, b){
+                if(this.matchedQueryEstilo.includes(a) ){
+                    return ( -1 )
+                }
+                    1
+            }.bind(this))
+            return chaves
         }
     },
 
     watch: {
-
+        
+        //Filtro Ano
         'filtroTernario.anos.2022'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
                 this.filtroTernario['anos']['2022'] = null;
@@ -439,6 +410,8 @@
                 this.filtroTernario['anos']['2024'] = null;
             }
         },
+    
+        //Filtro FrameWork
         'filtroTernario.frameworks.ReactJS'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
                 this.filtroTernario['frameworks']['ReactJS'] = null;
@@ -465,6 +438,64 @@
             }
         },
 
+        //Filtro Linguagem
+        'filtroTernario.linguagens.JavaScript'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['JavaScript'] = null;
+            }
+        },
+        'filtroTernario.linguagens.TypeScript'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['TypeScript'] = null;
+            }
+        },
+        'filtroTernario.linguagens.Python'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['Python'] = null;
+            }
+        },
+        'filtroTernario.linguagens.C'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['C'] = null;
+            }
+        },
+        'filtroTernario.linguagens.C#'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['C#'] = null;
+            }
+        },
+        'filtroTernario.linguagens.PHP'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['PHP'] = null;
+            }
+        },
+        'filtroTernario.linguagens.Java'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['linguagens']['Java'] = null;
+            }
+        },
+       
+        //Filtro Estilo
+        'filtroTernario.estilo.Vuetify'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['estilo']['Vuetify'] = null;
+            }
+        },
+        'filtroTernario.estilo.Bootstrap'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['estilo']['Bootstrap'] = null;
+            }
+        },
+        'filtroTernario.estilo.TailwindCSS'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['estilo']['TailwindCSS'] = null;
+            }
+        },
+        'filtroTernario.estilo.Styled-Componets'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['estilo']['Styled-Componets'] = null;
+            }
+        },
         
     },
 
@@ -483,7 +514,64 @@
         // }, 
         
         geradorProjetos(){
+            this.filtroProjetos = [];
+            var ignored_id_projeto = [];
+            var arr_keys = Object.keys(this.dataResult);
+            var arr_keys_length = arr_keys.length;
 
+            let filtro_ternario_anos = Object.values(this.filtroTernario['anos']);
+            
+            
+
+            let filtro_ternario_anos_includes_true = filtro_ternario_anos.includes(true);
+            
+            
+
+            var match_anos = null;
+           
+
+            for(let x = 0; x < arr_keys_length; x++){
+                var id_atual = arr_keys[x]
+                let projeto_atual = this.dataResult[id_atual];
+                let projeto_objeto =  JSON.parse(JSON.stringify(projeto_atual))
+                console.log(projeto_objeto)
+                if(ignored_id_projeto.includes(arr_keys)){
+                    continue;
+                }
+
+                let filtros_anos_length = this.dataResult[id_atual]['anos'].length;
+
+                for(let y = 0; y < filtros_anos_length; y++){
+                    let anos_atual = this.dataResult[id_atual]['anos'][y];
+                    if(this.filtroTernario['anos'][anos_atual] === false){
+                        match_anos = false;
+                        break;
+                    } else if(this.filtroTernario['anos'][anos_atual] === true) {
+                        match_anos = true;
+                    }                  
+                }
+            
+
+                if(match_anos === false){
+                    if(!ignored_id_projeto.includes(arr_keys)){
+                        ignored_id_projeto.push(arr_keys);
+                        continue;
+                    }
+                }
+
+                if((filtro_ternario_anos_includes_true) && match_anos === null){
+                    if(!ignored_id_projeto.includes(arr_keys)){
+                        ignored_id_projeto.push(arr_keys);
+                        continue;
+                    }
+                }
+
+                if(!ignored_id_projeto.includes(arr_keys)){
+                    this.filtroProjetos.push(projeto_objeto)
+                    console.log('opa')
+                }
+            }
+            
         }
     },
     mounted() {

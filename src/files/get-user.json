@@ -5,7 +5,7 @@
         "linguagens": ["TypeScript"],
         "frameworks":["ReactJS"],
         "bibliotecas": ["Styled-Components"],
-        "anos": ["2023"]
+        "anos": ["2022"]
 
     },
     "662611810": {
@@ -16,15 +16,7 @@
         "bibliotecas": [""],
         "anos": ["2023"]
 
-    },
-    "628769976": {
-        "nome": "Nlw Games",
-        "url": "https://api.github.com/repos/AlexandreOliveira7/Nlw-Games",
-        "linguagens": [""],
-        "frameworks":[""],
-        "bibliotecas": [""],
-        "anos": ["2022"]
-
     }
+    
     
 }
