@@ -176,7 +176,6 @@
                         <v-col cols="12">
                             <v-btn @click="geradorProjetos()">Aplicar Filtros</v-btn>
                         </v-col>    
-                        {{ filtroProjetos }}
                     </v-col>
                                     
                     <v-col cols="12" md="9">
@@ -186,7 +185,7 @@
                                         <v-img contain src="@/assets/img-projeto.png"></v-img>
                                     </v-col>
                                     <v-col cols="12" md="6" class="pl-md-10">
-                                        <p class="text-h6 text-lg-h5 font-weight-bold">Titulo do projeto</p>
+                                        <p class="text-h6 text-lg-h5 font-weight-bold">{{ projeto.anos }} {{ projeto.frameworks }} {{ projeto.linguagens }}</p>
                                         <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
                                         <v-row class="mt-2">
                                             <v-col cols="2">
@@ -208,7 +207,7 @@
                                                 <v-btn class="rounded-xl bg-primaria">Github</v-btn>
                                             </v-col>
                                         </v-row>
-                                    </v-col>                                   
+                                    </v-col>                             
                             </v-col>                                                                         
                         </v-row>
                     </v-col>
@@ -241,9 +240,10 @@
         dataResult: get_user,
         filtroTernario: {
             anos: {               
-                "2022": null,
+                "2025": null,
                 "2023": null,
-                "2024": null
+                "2024": null,
+                "2022": null
             },
             frameworks: {               
                 "ReactJS": null,
@@ -344,7 +344,7 @@
             })
 
             if(query.length > 0){
-                for(let x = 0; x < chaves.length; x++){
+                for(let x = 0; x < chaves_length; x++){
                     let chave_atual = chaves[x].toLowerCase();
                     var result = chave_atual.match(query);
                     if((result) && result.length > 0){
@@ -408,6 +408,11 @@
         'filtroTernario.anos.2024'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
                 this.filtroTernario['anos']['2024'] = null;
+            }
+        },
+        'filtroTernario.anos.2025'(newValue, oldValue) {
+            if (newValue === true && oldValue === false) {
+                this.filtroTernario['anos']['2025'] = null;
             }
         },
     
@@ -515,60 +520,98 @@
         
         geradorProjetos(){
             this.filtroProjetos = [];
-            var ignored_id_projeto = [];
-            var arr_keys = Object.keys(this.dataResult);
-            var arr_keys_length = arr_keys.length;
+            let ignored_id_projeto = [];
+            let arr_keys = Object.keys(this.dataResult);
+            let arr_keys_length = arr_keys.length;
 
             let filtro_ternario_anos = Object.values(this.filtroTernario['anos']);
-            
-            
-
+            let fltro_ternario_frameworks = Object.values(this.filtroTernario['frameworks']);
+            let fltro_ternario_linguagens = Object.values(this.filtroTernario['linguagens']);
+         
             let filtro_ternario_anos_includes_true = filtro_ternario_anos.includes(true);
+            let filtro_ternario_frameworks_includes_true = fltro_ternario_frameworks.includes(true);
+            let filtro_ternario_linguagens_includes_true = fltro_ternario_linguagens.includes(true);
             
             
 
-            var match_anos = null;
+            var match_anos;
+            var match_frameworks;
+            var match_linguagens
            
 
             for(let x = 0; x < arr_keys_length; x++){
                 var id_atual = arr_keys[x]
                 let projeto_atual = this.dataResult[id_atual];
-                let projeto_objeto =  JSON.parse(JSON.stringify(projeto_atual))
-                console.log(projeto_objeto)
-                if(ignored_id_projeto.includes(arr_keys)){
+                let projeto =  JSON.parse(JSON.stringify(projeto_atual))
+
+                
+
+                if(ignored_id_projeto.includes(id_atual)){
                     continue;
                 }
 
-                let filtros_anos_length = this.dataResult[id_atual]['anos'].length;
+                match_anos = null;
+                match_frameworks = null;
+                match_linguagens = null;
 
+                let filtros_anos_length = projeto['anos'].length;
                 for(let y = 0; y < filtros_anos_length; y++){
                     let anos_atual = this.dataResult[id_atual]['anos'][y];
                     if(this.filtroTernario['anos'][anos_atual] === false){
                         match_anos = false;
+                        
                         break;
                     } else if(this.filtroTernario['anos'][anos_atual] === true) {
                         match_anos = true;
                     }                  
                 }
+
+                let filtro_frameworks_length = projeto['frameworks'].length;
+                for(let x = 0; x < filtro_frameworks_length; x++){
+                    let framework_atual = this.dataResult[id_atual]['frameworks'][x];
+                    if(this.filtroTernario['frameworks'][framework_atual] === false) {
+                        match_frameworks = false;
+                        break
+                    } else if(this.filtroTernario['frameworks'][framework_atual] === true) {
+                        match_frameworks = true;
+                    }
+                }
+
+                let filtro_linguagens_length = projeto['linguagens'].length;
+                for(let z = 0; z < filtro_linguagens_length; z++){
+                    let linguagem_atual = this.dataResult[id_atual]['linguagens'][z];
+                    if(this.filtroTernario['linguagens'][linguagem_atual] === false){
+                        match_linguagens = false;
+                        break
+                    } else if(this.filtroTernario['linguagens'][linguagem_atual] === true) {
+                        match_linguagens = true
+                    }
+                }
             
 
-                if(match_anos === false){
-                    if(!ignored_id_projeto.includes(arr_keys)){
-                        ignored_id_projeto.push(arr_keys);
+                if(match_anos === false || match_frameworks === false || match_linguagens === false){
+                    if(!ignored_id_projeto.includes(id_atual)){
+                        ignored_id_projeto.push(id_atual);
                         continue;
                     }
                 }
 
-                if((filtro_ternario_anos_includes_true) && match_anos === null){
-                    if(!ignored_id_projeto.includes(arr_keys)){
-                        ignored_id_projeto.push(arr_keys);
+                if
+                (
+                    (filtro_ternario_anos_includes_true) && match_anos === null ||
+                    (filtro_ternario_frameworks_includes_true) && match_frameworks === null ||
+                    (filtro_ternario_linguagens_includes_true) && match_linguagens === null
+                )
+                
+                {
+                    if(!ignored_id_projeto.includes(id_atual)){
+                        ignored_id_projeto.push(id_atual);
                         continue;
                     }
                 }
 
-                if(!ignored_id_projeto.includes(arr_keys)){
-                    this.filtroProjetos.push(projeto_objeto)
-                    console.log('opa')
+                if(!ignored_id_projeto.includes(id_atual)){
+                    this.filtroProjetos.push(projeto)
                 }
             }
             
