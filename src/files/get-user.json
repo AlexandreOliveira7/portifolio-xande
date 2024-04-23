@@ -4,7 +4,7 @@
         "url": "https://api.github.com/repos/AlexandreOliveira7/Comunity-Feed",
         "linguagens": ["JavaScript"],
         "frameworks":["ReactJS"],
-        "bibliotecas": [""],
+        "estilos": ["Vuetify"],
         "anos": ["2022"]
 
     },
@@ -13,7 +13,7 @@
         "url": "https://api.github.com/repos/AlexandreOliveira7/capputeno",
         "linguagens": ["TypeScript"],
         "frameworks":["VueJS"],
-        "bibliotecas": ["Styled-Components"],
+        "estilos": ["Styled-Components"],
         "anos": ["2025"]
 
     },
@@ -22,7 +22,7 @@
         "url": "https://api.github.com/repos/AlexandreOliveira7/Comunity-Feed",
         "linguagens": ["PHP"],
         "frameworks":["Angular"],
-        "bibliotecas": [""],
+        "estilos": ["Bootstrap"],
         "anos": ["2023"]
 
     }

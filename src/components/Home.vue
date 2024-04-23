@@ -142,7 +142,7 @@
                             <hr class="mt-2">
                         </v-col>      
                         <v-col cols="12 mt-2">
-                            <h4>Filtro por Estilo <v-icon :icon="toggleFiltros.includes('Bibliotecas') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Bibliotecas') ? popIt(toggleFiltros, 'Bibliotecas') : toggleFiltros.push('Bibliotecas');"></v-icon></h4>
+                            <h4>Filtro por Estilos <v-icon :icon="toggleFiltros.includes('Bibliotecas') ? 'mdi-chevron-down' : 'mdi-chevron-right'" class="primary-icon-link float-end" @click="toggleFiltros.includes('Bibliotecas') ? popIt(toggleFiltros, 'Bibliotecas') : toggleFiltros.push('Bibliotecas');"></v-icon></h4>
                             <v-row v-if="toggleFiltros.includes('Bibliotecas')">
                                 <v-col>
                                     <v-text-field
@@ -161,7 +161,7 @@
                             <v-row class="ma-0 ms-2 mt-0 mb-0" v-if="toggleFiltros.includes('Bibliotecas')">
                                 <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in AmostraEstilo" :key="'estilo__' + valor">
                                     <label :class="matchedQueryEstilo.includes(valor) ? 'font-weight-bold' : ''" >
-                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['estilo'][valor] ? 'chk-red' : (true === filtroTernario['estilo'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['estilo'][valor]" v-model="filtroTernario['estilo'][valor]"> {{valor}}
+                                        <input class="mt-1" type="checkbox" :class="false === filtroTernario['estilos'][valor] ? 'chk-red' : (true === filtroTernario['estilos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['estilos'][valor]" v-model="filtroTernario['estilos'][valor]"> {{valor}}
                                     </label>
                                 </v-col>
                                 
@@ -185,7 +185,7 @@
                                         <v-img contain src="@/assets/img-projeto.png"></v-img>
                                     </v-col>
                                     <v-col cols="12" md="6" class="pl-md-10">
-                                        <p class="text-h6 text-lg-h5 font-weight-bold">{{ projeto.anos }} {{ projeto.frameworks }} {{ projeto.linguagens }}</p>
+                                        <p class="text-h6 text-lg-h5 font-weight-bold">{{ projeto.anos }} {{ projeto.frameworks }} {{ projeto.linguagens }} {{ projeto.estilos }}</p>
                                         <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
                                         <v-row class="mt-2">
                                             <v-col cols="2">
@@ -221,6 +221,7 @@
   import { defineComponent } from 'vue';
   import  axios  from 'axios';
   import get_user from '@/files/get-user.json'
+
   
   export default defineComponent({
     data(){
@@ -261,11 +262,11 @@
                 "PHP": null,
                 "Java": null
             },
-            estilo: {               
+            estilos: {               
                 "Vuetify": null,
                 "Bootstrap": null,
                 "TailwindCSS": null,
-                "Styled-Componets": null
+                "Styled-Components": null
             }
 
         },
@@ -364,7 +365,7 @@
         },
 
         AmostraEstilo(){
-            let chaves = Object.keys(this.filtroTernario['estilo']);
+            let chaves = Object.keys(this.filtroTernario['estilos']);
             let chaves_length = chaves.length;
             var query = this.queryEstilo.toLowerCase();
             this.matchedQueryEstilo = [];
@@ -481,24 +482,24 @@
         },
        
         //Filtro Estilo
-        'filtroTernario.estilo.Vuetify'(newValue, oldValue) {
+        'filtroTernario.estilos.Vuetify'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
-                this.filtroTernario['estilo']['Vuetify'] = null;
+                this.filtroTernario['estilos']['Vuetify'] = null;
             }
         },
-        'filtroTernario.estilo.Bootstrap'(newValue, oldValue) {
+        'filtroTernario.estilos.Bootstrap'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
-                this.filtroTernario['estilo']['Bootstrap'] = null;
+                this.filtroTernario['estilos']['Bootstrap'] = null;
             }
         },
-        'filtroTernario.estilo.TailwindCSS'(newValue, oldValue) {
+        'filtroTernario.estilos.TailwindCSS'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
-                this.filtroTernario['estilo']['TailwindCSS'] = null;
+                this.filtroTernario['estilos']['TailwindCSS'] = null;
             }
         },
-        'filtroTernario.estilo.Styled-Componets'(newValue, oldValue) {
+        'filtroTernario.estilos.Styled-Components'(newValue, oldValue) {
             if (newValue === true && oldValue === false) {
-                this.filtroTernario['estilo']['Styled-Componets'] = null;
+                this.filtroTernario['estilos']['Styled-Components'] = null;
             }
         },
         
@@ -527,16 +528,19 @@
             let filtro_ternario_anos = Object.values(this.filtroTernario['anos']);
             let fltro_ternario_frameworks = Object.values(this.filtroTernario['frameworks']);
             let fltro_ternario_linguagens = Object.values(this.filtroTernario['linguagens']);
+            let fltro_ternario_estilos = Object.values(this.filtroTernario['estilos']);
          
             let filtro_ternario_anos_includes_true = filtro_ternario_anos.includes(true);
             let filtro_ternario_frameworks_includes_true = fltro_ternario_frameworks.includes(true);
             let filtro_ternario_linguagens_includes_true = fltro_ternario_linguagens.includes(true);
+            let filtro_ternario_estilos_includes_true = fltro_ternario_estilos.includes(true);
             
             
 
             var match_anos;
             var match_frameworks;
-            var match_linguagens
+            var match_linguagens;
+            var match_estilos;
            
 
             for(let x = 0; x < arr_keys_length; x++){
@@ -553,6 +557,7 @@
                 match_anos = null;
                 match_frameworks = null;
                 match_linguagens = null;
+                match_estilos = null;
 
                 let filtros_anos_length = projeto['anos'].length;
                 for(let y = 0; y < filtros_anos_length; y++){
@@ -587,9 +592,20 @@
                         match_linguagens = true
                     }
                 }
+
+                let filtro_estilos_length = projeto['estilos'].length;
+                for(let xa = 0; xa < filtro_estilos_length; xa++){
+                    let estilo_atual = this.dataResult[id_atual]['estilos'][xa];
+                    if(this.filtroTernario['estilos'][estilo_atual] === false){
+                        match_estilos = false;
+                        break
+                    } else if(this.filtroTernario['estilos'][estilo_atual] === true) {
+                        match_estilos = true;
+                    }
+                }
             
 
-                if(match_anos === false || match_frameworks === false || match_linguagens === false){
+                if(match_anos === false || match_frameworks === false || match_linguagens === false || match_estilos === false){
                     if(!ignored_id_projeto.includes(id_atual)){
                         ignored_id_projeto.push(id_atual);
                         continue;
@@ -600,7 +616,8 @@
                 (
                     (filtro_ternario_anos_includes_true) && match_anos === null ||
                     (filtro_ternario_frameworks_includes_true) && match_frameworks === null ||
-                    (filtro_ternario_linguagens_includes_true) && match_linguagens === null
+                    (filtro_ternario_linguagens_includes_true) && match_linguagens === null ||
+                    (filtro_ternario_estilos_includes_true) && match_estilos === null
                 )
                 
                 {
