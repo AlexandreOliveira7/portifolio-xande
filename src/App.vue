@@ -6,6 +6,21 @@
   </v-app>
 </template>
 
-<script setup>
-  //
+<script>
+import { ref } from 'vue'
+
+
+
+export default {
+  // `setup` is a special hook dedicated for the Composition API.
+  setup() {
+    const isLoading = ref(true)
+
+    // expose the ref to the template
+    return {
+      isLoading,
+    }
+  },
+
+}
 </script>
