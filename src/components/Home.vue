@@ -33,10 +33,10 @@
                             <p class="text-subtitle-1 text-md-h6 text-lg-h5 font-weight-bold text-cinza mt-1">crie com propósito</p>
                             <div class=" d-flex justify-center align-center">
                                 <v-col cols="3">
-                                    <v-btn block class="bg-primaria rounded">Github</v-btn>
+                                    <v-btn block class="bg-primaria rounded-xl">Github</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn block class="bg-primaria rounded">Linkedin</v-btn>
+                                    <v-btn block class="bg-primaria rounded-xl">Linkedin</v-btn>
                                 </v-col>                                      
                             </div>
                         </div>          
@@ -60,6 +60,7 @@
                                 single-line
                                 hide-details
                                 class="mt-2"
+                                @keyup="estaEscrevendo" @keydown="terminouEscrever = false;"
                             >
                             </v-text-field>
                         </v-col>
@@ -174,13 +175,13 @@
                             <hr class="mt-2">
                         </v-col>      
                         <v-col cols="12">
-                            <v-btn @click="geradorProjetos()">Aplicar Filtros</v-btn>
+                            <v-btn class="bg-primaria rounded-xl" @click="geradorProjetos()">Aplicar Filtros</v-btn>
                         </v-col>    
                     </v-col>
                                     
                     <v-col cols="12" md="9">
                         <v-row class="d-flex justify-center mx-5 mx-md-0">
-                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" v-for="projeto in AmostraProjeto">
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" v-for="projeto in listagemProjetos">
                                     <v-col cols="12" md="4">
                                         <v-img contain src="@/assets/img-projeto.png"></v-img>
                                     </v-col>
@@ -238,6 +239,7 @@
         matchedQueryEstilo: [],
         filtroProjetos: [],
         toggleFiltros: [],
+        terminouEscrever: true,
         dataResult: get_user,
         filtroTernario: {
             anos: {               
@@ -390,6 +392,26 @@
                     1
             }.bind(this))
             return chaves
+        },
+
+        listagemProjetos() {
+            var projetos = this.filtroProjetos;
+            let projetos_lenght = this.filtroProjetos.length;
+            
+            if(this.queryProjeto.length > 0 && this.terminouEscrever){
+                projetos = []
+                var queryProjetos = new RegExp(this.queryProjeto, 'i');
+                for(let x = 0; x < projetos_lenght; x++){
+                    let projeto_atual_nome = this.filtroProjetos[x]['nome'].toLowerCase();
+                    var result = projeto_atual_nome.search(queryProjetos);
+                    if(result >= 0){
+                        projetos.push(this.filtroProjetos[x])
+                    }
+                    
+                }
+            }
+            
+            return projetos;
         }
     },
 
@@ -511,6 +533,14 @@
             if(index > -1){
                 target.splice(index, 1);
             }
+        },
+
+        estaEscrevendo(){
+            this.terminouEscrever = false;
+
+            this.tempoPesquisa = setTimeout(() => {
+                this.terminouEscrever = true;
+            }, 1300)
         },
 
         // async getUser() {
@@ -637,6 +667,10 @@
     mounted() {
         // this.getUser()
         this.geradorProjetos();
+        setTimeout(() => {
+            this.$root.isLoading = false;
+        }, 2000)
+        
     }
   })
    
