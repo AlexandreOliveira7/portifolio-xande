@@ -164,13 +164,7 @@
                                     <label :class="matchedQueryEstilo.includes(valor) ? 'font-weight-bold' : ''" >
                                         <input class="mt-1" type="checkbox" :class="false === filtroTernario['estilos'][valor] ? 'chk-red' : (true === filtroTernario['estilos'][valor] ? 'chk-green' : 'chk-blue' )"  :indeterminate="false === filtroTernario['estilos'][valor]" v-model="filtroTernario['estilos'][valor]"> {{valor}}
                                     </label>
-                                </v-col>
-                                
-                                <!-- <v-col cols="12" class="ma-0 mt-0 mb-0" v-for="valor in filtroAnos" :key="'anos__' + valor">
-                                    <label >
-                                        <input type="checkbox" > {{ valor }}
-                                    </label>
-                                </v-col> -->
+                                </v-col>                                                              
                             </v-row>
                             <hr class="mt-2">
                         </v-col>      
@@ -181,7 +175,18 @@
                                     
                     <v-col cols="12" md="9" v-if="listagemProjetos.length > 0 && this.terminouEscrever">
                         <v-row class="d-flex justify-center mx-5 mx-md-0">
-                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" v-for="projeto in listagemProjetos">
+                            <v-col cols="12" md="10" class=" d-md-flex justify-end align-center mr-2 rounded-lg mx-5 mt-2">
+                                <v-col cols="6" md="3" class="rounded-xl">
+                                    <v-select
+                                        label="Projetos por Página"
+                                        v-model="limiteProjetosFiltrados"
+                                        :items="projetosPorPagina"                             
+                                    ></v-select>
+                                </v-col>                                                             
+                            </v-col>
+                        </v-row>
+                        <v-row class="d-flex justify-center mx-5 mx-md-0">
+                            <v-col cols="12" md="10" class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" v-for="projeto in listagemCortada">
                                     <v-col cols="12" md="4">
                                         <v-img contain src="@/assets/img-projeto.png"></v-img>
                                     </v-col>
@@ -210,6 +215,22 @@
                                         </v-row>
                                     </v-col>                             
                             </v-col>                                                                         
+                        </v-row>
+                        <v-row class="d-flex justify-center mt-10 mx-5 mx-md-0">
+                            <v-col cols="12" md="5" class="d-md-flex bg-gelo justify-center align-center mr-2 rounded-lg mx-5 mt-2">
+                                
+                                <!-- <v-select
+                                    label="Empresas por Página"
+                                    v-model="limitEmpresasFiltradas"
+                                    :items="itemsPerPageOptions"
+                                    :disabled="empresasFiltradas.length < 11"
+                                ></v-select> -->
+                                <v-pagination
+                                    v-model="paginacaoProjetos"
+                                    :length="Math.ceil(Object.values(listagemProjetos).length/limiteProjetosFiltrados)"
+                                    :total-visible="5"   size="small" rounded="0"
+                                ></v-pagination>
+                            </v-col>
                         </v-row>
                     </v-col>
                     <v-col cols="12" md="9" class="d-flex justify-center" v-if="listagemProjetos.length <= 0">
@@ -242,6 +263,7 @@
     data(){
       return {
         drawer: false,
+        paginacaoProjetos: 1,
         queryProjeto: '',
         queryAnos: '',
         queryFrame: '',
@@ -251,7 +273,9 @@
         matchedQueryFrame: [],
         matchedQueryLinguagem: [],
         matchedQueryEstilo: [],
+        projetosPorPagina: [2,3,4,5],
         filtroProjetos: [],
+        limiteProjetosFiltrados: 2,
         toggleFiltros: [],
         terminouEscrever: true,
         dataResult: get_user,
@@ -425,7 +449,17 @@
                 }
             }
             
+
             return projetos;
+            
+        },
+
+        listagemCortada() {
+            let projetosCortado = this.listagemProjetos;
+            let primeiroIndex = (this.limiteProjetosFiltrados * this.paginacaoProjetos) - this.limiteProjetosFiltrados;
+            let segundoIndex = (this.limiteProjetosFiltrados * this.paginacaoProjetos);
+
+            return projetosCortado.slice(primeiroIndex, segundoIndex);
         }
     },
 
