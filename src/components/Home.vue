@@ -53,10 +53,10 @@
                             <p class="text-h6 text-md-h5 text-lg-h4 font-weight-bold mt-n4">Desenvolvedor <span class="text-h6 text-md-h5 text-lg-h4 font-weight-bold text-primaria">Frontend</span></p>
                             <p class="text-subtitle-1 text-md-h6 text-lg-h5 font-weight-bold text-cinza mt-1">crie com propósito</p>
                             <div class=" d-flex justify-center align-center">
-                                <v-col cols="3">
+                                <v-col cols="5" md="3">
                                     <v-btn block class="bg-primaria rounded-xl">Github</v-btn>
                                 </v-col>
-                                <v-col cols="3">
+                                <v-col cols="5" md="3">
                                     <v-btn block class="bg-primaria rounded-xl">Linkedin</v-btn>
                                 </v-col>                                      
                             </div>
@@ -241,7 +241,7 @@
                                 
                             >
                                 <v-col cols="12" md="4">
-                                    <v-img contain src="@/assets/img-projeto.png"></v-img>
+                                    <v-img contain width="200" src="@/assets/img-projeto.png"></v-img>
                                 </v-col>
                                 <v-col cols="12" md="6" class="pl-md-10">
                                     <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
