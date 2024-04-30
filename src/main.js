@@ -6,6 +6,7 @@
 
 // Plugins
 import { registerPlugins } from '@/plugins'
+import { MotionPlugin } from '@vueuse/motion'
 
 // Components
 import App from './App.vue'
@@ -17,4 +18,5 @@ const app = createApp(App)
 
 registerPlugins(app)
 
+app.use(MotionPlugin)
 app.mount('#app')
