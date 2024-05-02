@@ -1,6 +1,5 @@
 <template>
-    <v-main>
-        <v-row>
+        <v-row style="max-height: 140px;">
             <v-col cols="12" class="d-flex justify-center align-center pt-7">
                 <div class="d-md-none">
                     <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="text-primaria"></v-app-bar-nav-icon>
@@ -37,7 +36,6 @@
                 </v-col>
             </v-col>
         </v-row>
-    </v-main>
 </template>
 
 <script>
@@ -50,3 +48,7 @@ export default {
     }
 }
 </script>
+
+<style>
+   
+</style>
