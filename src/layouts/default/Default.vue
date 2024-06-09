@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <header-default/>
     <div class="loading-spin" v-if="$root.isLoading">
       <v-progress-circular
         :size="50"
@@ -16,11 +15,10 @@
 
 <script>
   import DefaultView from './View.vue';
-  import HeaderDefault from '@/components/Header.vue';
+
 
   export default {
     components: {
-      HeaderDefault,
       DefaultView,
     },
   }

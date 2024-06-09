@@ -1,20 +1,57 @@
 <template>
-    <v-main class="overflow-x-hidden overflow-y-hidden">       
+    <v-main class="overflow-x-hidden overflow-y-hidden bg-gelo">    
+        <v-row style="max-height: 140px;">
+            <v-col cols="12" class="d-flex justify-center align-center bg-gelo py-4">
+                <div class="d-md-none">
+                    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="text-primaria"></v-app-bar-nav-icon>
+                    <v-navigation-drawer v-model="drawer" location="left" temporary>
+                        <v-img class="mx-auto my-5" max-width="160" height="auto" cover src=""></v-img>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Início</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Sobre</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Habilidades</v-btn>
+                        <v-btn class="cursor-pointer w-100 bg-third elevation-0 text-capitalize">Contato</v-btn>                      
+                    </v-navigation-drawer>
+                </div>
+                <v-col 
+                    cols="5" 
+                    class="d-none d-md-block"
+                    v-motion
+                    :initial="{ opacity: 0, x: -100 }"
+                    :enter="{ opacity: 1, x: 0,}"
+                    :delay="800"
+                    :duration="1000"
+                >
+                    <v-img width="auto" max-width="200" height="auto" class=" ml-16" cover src="@/assets/X.png" @click="$router.push({ path: '/' })"></v-img>
+                </v-col>     
+                <v-col cols="7" class="d-flex align-center justify-end mr-16"
+                    v-motion
+                    :initial="{ opacity: 0, x: 100 }"
+                    :enter="{ opacity: 1, x: 0,}"
+                    :delay="800"
+                    :duration="1000"           
+                >
+                    <a class="cursor-pointer link-rotas d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6 text-primaria">Início</p></a>
+                    <a class="cursor-pointer link-rotas d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Sobre</p></a>    
+                    <a class="cursor-pointer link-rotas d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Habilidades</p></a>  
+                    <a class="cursor-pointer link-rotas d-none d-md-flex mr-7" density="comfortable"><p class="text-h6 text-lg-h6">Contato</p></a>
+                </v-col>
+            </v-col>
+        </v-row>   
+        <!-- // Inicio -->
         <v-row class="mb-10">
-            <v-col cols="12">
-                <v-row class="bg-gelo py-16">    
+            <v-col cols="12" class="">
+                <v-row class=" py-16">    
                     <v-col cols="12" class="d-flex justify-center align-itens-center text-center">
                         <div
                         v-motion
                         :initial="{ opacity: 0, y: -100 }"
                         :enter="{ opacity: 1, y: 0,}"
                         :visible="{opacity: 1, y: 0,}"
-                        :delay="800"
+                        :delay="300"
                         :duration="1000"
                         >
                             <p class="text-h5 text-md-h4 text-lg-h3 font-weight-bold">Olá, eu sou Alexandre Oliveira</p><br>
                             <p class="text-h6 text-md-h5 text-lg-h4 font-weight-bold mt-n4">Desenvolvedor <span class="text-h6 text-md-h5 text-lg-h4 font-weight-bold text-primaria">Frontend</span></p>
-                            <p class="text-subtitle-1 text-md-h6 text-lg-h5 font-weight-bold text-cinza mt-1">crie com propósito</p>
                             <div class=" d-flex justify-center align-center">
                                 <v-col cols="5" md="3">
                                     <v-btn block class="bg-primaria rounded-xl">Github</v-btn>
@@ -26,6 +63,22 @@
                         </div>          
                     </v-col> 
                 </v-row>
+                <!-- // Sobre -->
+                <v-row class="mb-n16 mb-md-0">
+                    <v-col cols="12" class="d-flex justify-center align-center mt-5 mb-n16 mb-md-0">
+                        <p class="text-subtitle1 text-md-h6 text-lg-h5 font-weight-bold" style="border-bottom: 3px solid #00008B;">Sobre</p>
+                    </v-col>
+                </v-row>
+                <v-row class="mb-10 altura-sobre">
+                    <v-col class="d-flex flex-column justify-center align-center mb-n16 mb-md-0" cols="12" md="8">
+                        <p class="px-5 text-center">Sou desenvolvedor apaixonado por tecnologia com foco em JavaScript. Adoro criar soluções dinâmicas e interativas utilizando frameworks modernos como Vue.js e Reactjs.</p>
+                        <p class="px-5 text-center mt-2"> Estou sempre em busca de aprender novas técnicas e melhorar minhas habilidades para entregar código de alta qualidade.</p>
+                    </v-col>
+                    <v-col cols="12" md="4" class="img-banner mt-n10">
+                        
+                    </v-col>
+                </v-row>
+                <!-- // Projetos -->
                 <v-row>
                     <v-col cols="12" class="d-flex justify-center align-center mt-5">
                         <p class="text-subtitle1 text-md-h6 text-lg-h5 font-weight-bold" style="border-bottom: 3px solid #00008B;">Projetos</p>
@@ -40,7 +93,7 @@
                         :initial="{ opacity: 0, x: -100 }"
                         :enter="{ opacity: 1, x: 0,}"
                         :visible="{opacity: 1, x: 0,}"
-                        :delay="800"
+                        :delay="300"
                         :duration="1000"
                     >
                         <v-col cols="12 mb-10">
@@ -174,7 +227,7 @@
                         :initial="{ opacity: 0, x: 100 }"
                         :enter="{ opacity: 1, x: 0,}"
                         :visible="{opacity: 1, x: 0,}"
-                        :delay="800"
+                        :delay="300"
                         :duration="1000"
                         v-if="listagemProjetos.length > 0 && this.terminouEscrever"
                     >
@@ -193,54 +246,57 @@
                             <v-col 
                                 cols="12" 
                                 md="10" 
-                                class="bg-gelo d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" 
+                                class=" elevation-5 d-md-flex justify-center align-center mr-2 rounded-lg mx-5 mt-2" 
                                 v-for="projeto in listagemCortada"
                                 v-motion
                                 :initial="{ opacity: 0, x: 100 }"
                                 :enter="{ opacity: 1, x: 0,}"
                                 :visible="{opacity: 1, x: 0,}"
-                                :delay="800"
+                                :delay="300"
                                 :duration="900"
                                 
                             >
-                                <v-col cols="12" md="4">
-                                    <v-img contain width="200" src="@/assets/img-projeto.png"></v-img>
-                                </v-col>
-                                <v-col cols="12" md="6" class="pl-md-10">
-                                    <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
-                                    <v-row class="mt-2">
-                                        <v-col cols="2">
-                                            <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                        </v-col>
-                                        <v-col cols="2">
-                                            <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                        </v-col>
-                                        <v-col cols="2">
-                                            <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                        </v-col>
-                                        <v-col cols="2">
-                                            <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
-                                        </v-col>
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
-                                            <v-btn class="rounded-xl bg-primaria">Github</v-btn>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>                             
+                                <div class="d-flex justify-center align-center forma-listagem">
+                                    <v-div class="d-flex justify-center">
+                                        <v-img contain width="200" height="200"  class="mr-8" src="@/assets/img-projeto.png"></v-img>
+                                    </v-div>
+                                    
+                                    <div  class="pl-md-10">
+                                        <p class="text-body-2 text-cinza font-weight-bold mt-2">falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição falaaa galera esse aqui é o meu portifólio e eu estou testando a descrição</p>
+                                        <v-row class="mt-2">
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                            <v-col cols="2">
+                                                <img width="30px" height="30px" src="@/assets/js.png"></img>                                              
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-btn class="rounded-xl bg-primaria mr-2">Deploy</v-btn>
+                                                <v-btn class="rounded-xl bg-primaria">Github</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </div>                             
+                                </div>
                             </v-col>                                                                         
                         </v-row>
                         <v-row class="d-flex justify-center mt-10 mx-5 mx-md-0" v-motion-slide-visible-right>
                             <v-col 
                                 cols="12" 
                                 md="5" 
-                                class="d-md-flex bg-gelo justify-center align-center mr-2 rounded-lg mx-5 mt-2"
+                                class="d-md-flex  justify-center align-center mr-2 rounded-lg mx-5 mt-2"
                                 v-motion
                                 :initial="{ opacity: 0, x: 100 }"
                                 :enter="{ opacity: 1, x: 0,}"
                                 :visible="{opacity: 1, x: 0,}"
-                                :delay="900"
+                                :delay="300"
                                 :duration="1000"
                             >
                                 
@@ -767,5 +823,31 @@
         border-bottom: 3px solid #00008B;
     }
 
+    .img-banner {
+        background-image: url(../assets/xande.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center right;
+
+    }
+
+    @media (max-width: 959px) {
+        .altura-sobre {
+            height: 1000px;
+        }
+    }
+
+    @media (min-width: 959px) {
+        .altura-sobre {
+            height: 500px;
+        }
+    }
+
+    @media (max-width: 660px) {
+        .forma-listagem {
+            display: flex;
+            flex-direction: column;
+        }
+    }
     
   </style>
