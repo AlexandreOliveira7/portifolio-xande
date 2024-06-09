@@ -78,6 +78,55 @@
                         
                     </v-col>
                 </v-row>
+                <!-- // Habilidades -->
+                <v-row>
+                    <v-col cols="12" class="d-flex justify-center align-center mt-5">
+                        <p class="text-subtitle1 text-md-h6 text-lg-h5 font-weight-bold" style="border-bottom: 3px solid #00008B;">Habilidades</p>
+                    </v-col>                    
+                </v-row>
+                <v-row class="mb-10 mt-10 d-flex justify-center">
+                    <v-col class="d-flex text-center" cols="10">
+                        <div class="d-flex flex-wrap justify-center">
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-language-javascript</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-language-html5</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-nodejs</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-language-css3</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-vuetify</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-vuejs</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-react</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-bootstrap</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            <div class="border elevation-1 rounded-lg mr-2 py-5 mt-2" style="width: 150px;">
+                                <v-icon  size="50" >mdi-docker</v-icon>
+                                <p>JavaScript</p>
+                            </div>
+                            
+                        </div>
+                    </v-col>
+                </v-row>
                 <!-- // Projetos -->
                 <v-row>
                     <v-col cols="12" class="d-flex justify-center align-center mt-5">
