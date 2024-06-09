@@ -19,7 +19,9 @@ export default createVuetify({
         colors: {
           primaria: '#00008B',
           gelo: '#f5f5f5',
-          cinza: '#bebebe'
+          cinza: '#bebebe',
+          branco: '#fff'
+
         }
       }
     }
